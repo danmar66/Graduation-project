@@ -1,0 +1,27 @@
+{
+  "name": "graduation_project",
+  "version": "1.0.0",
+  "description": "My graduation project at DevIT",
+  "main": "",
+  "scripts": {
+    "dev": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danmar66/Graduation_project.git"
+  },
+  "keywords": [
+    "MERN",
+    "MongoDB",
+    "Node",
+    "Express",
+    "React",
+    "Redux"
+  ],
+  "author": "Daniel Marchenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danmar66/Graduation_project/issues"
+  },
+  "homepage": "https://github.com/danmar66/Graduation_project#readme"
+}
