@@ -1,9 +1,16 @@
 const Product = require("../models/Product");
 const Tag = require("../models/Tag");
+const {validationResult} = require("express-validator");
 
 class TagController {
   async create(req, res) {
     try {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        const errorMessage = errors.errors.map(({param, msg}) => ({[param]: msg}))
+        return res.status(400).json({message: "Validation error", errorMessage});
+      }
+
       const { title, tagTypeId, slug } = req.body;
       const tagCandidate = await Tag.find({ $and: [{ title }, { slug }, { tagTypeId }] });
       if (tagCandidate.length) {
@@ -14,7 +21,7 @@ class TagController {
         tagTypeId,
         slug,
       });
-      return res.json({ message: `Tag ${title} added`, tag });
+      return res.json({ message: `Tag added`, tag });
     } catch (e) {
       console.log(e);
     }
@@ -31,12 +38,12 @@ class TagController {
         return response.status(400).json({message: `Tag ${title} already created`})
 
       }
-      const editedTag = await Tag.findOneAndUpdate(
+      const updatedTag = await Tag.findOneAndUpdate(
         { _id },
         { title, tagTypeId, slug },
         { new: true }
       );
-      return res.json({ message: `Tag ${title} updated`, editedTag });
+      return res.json({ message: `Tag updated`, updatedTag });
     } catch (e) {
       console.log(e);
     }
@@ -47,7 +54,7 @@ class TagController {
       const { id: _id } = req.params;
       const tag = await Tag.findOneAndDelete({ _id });
       await Product.updateMany({}, { $pull: { tags: { $in: [_id] } } });
-      return res.json({ message: `Tag ${tag.title} deleted`, tag });
+      return res.json({ message: `Tag deleted`, tag });
     } catch (e) {
       console.log(e);
     }
