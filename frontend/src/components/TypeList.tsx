@@ -9,6 +9,8 @@ const TypeList: React.FC = () => {
 
   const { tags } = useTypedSelector((state) => state.tag);
 
+
+
   // @todo
 
   const { fetchTags } = useActions();
@@ -42,7 +44,7 @@ const TypeList: React.FC = () => {
               {type.title.charAt(0).toUpperCase() + type.title.slice(1)}
             </Accordion.Header>
             <Accordion.Body>
-              <TagList handleFilters={(filters: [string]) => handleFilters(filters)} typeId={type._id} />
+              <TagList handleFilters={(filters: [string]) => handleFilters(filters)} typeId={type._id} tagsList={tags} />
             </Accordion.Body>
           </Accordion.Item>
         ))}

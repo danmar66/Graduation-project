@@ -5,28 +5,29 @@ import { useTypedSelector } from "../hooks/useTypedSelector";
 
 type Props = {
   typeId: string;
-  handleFilters: any
+  handleFilters: any;
+  tagsList: any;
 };
 
-const TagList: React.FC<Props> = ({ typeId, handleFilters }) => {
-  const { tags, error, loading } = useTypedSelector((state) => state.tag);
+const TagList: React.FC<Props> = ({ tagsList, typeId, handleFilters }) => {
+  // const { tags, error, loading } = useTypedSelector((state) => state.tag);
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   // @todo
 
-  const { fetchTags } = useActions();
+  // const { fetchTags } = useActions();
 
-  useEffect(() => {
-    fetchTags();
-  }, []);
+  // useEffect(() => {
+  //   fetchTags();
+  // }, []);
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
-  if (error) {
-    return <h1>{error}</h1>;
-  }
+  // if (loading) {
+  //   return <h1>Loading...</h1>;
+  // }
+  // if (error) {
+  //   return <h1>{error}</h1>;
+  // }
 
   const handleToggleCheckbox = (tag: string) => {
     const currentIndex = selectedTags.indexOf(tag);
@@ -40,11 +41,11 @@ const TagList: React.FC<Props> = ({ typeId, handleFilters }) => {
 
   return (
     <div>
-      {tags
-        .sort((a, b) => {
+      {tagsList
+        .sort((a: any, b: any) => {
           return a.title > b.title ? 1 : -1;
         })
-        .map((tag) =>
+        .map((tag: any) =>
           tag.tagTypeId === typeId ? (
             <Form.Check
               checked={selectedTags.indexOf(tag.slug) === -1 ? false : true}
