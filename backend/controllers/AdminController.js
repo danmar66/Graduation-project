@@ -33,19 +33,17 @@ class AdminController {
             const errors = validationResult(req)
             if (!errors.isEmpty()) {
                 const errorMessage = errors.errors.map(({param, msg}) => ({[param]: msg}))
+
                 return res.status(400).json({message: "Validation error", errorMessage});
             }
             const {id} = req.params;
-            console.log(id)
             const {username, email, password} = req.body;
-            if (!id) {
-                res.status(400).json({message: `ID ${id} not found`});
-            }
             const editedAdmin = await Admin.findByIdAndUpdate(
                 id,
                 {username, email, password: helper.passwordHash(password)},
                 {new: true}
             );
+
             return res.json({message: `Admin edited`, editedAdmin});
         } catch (e) {
             console.log(e.message);
@@ -67,6 +65,7 @@ class AdminController {
                     res.json({message: `Admin deleted`, deletedAdmin});
                 }
             }
+
             res.json({message: `Enter valid ID`});
         } catch (e) {
             console.log(e.message);
@@ -126,8 +125,8 @@ class AdminController {
 
             res.json({message: "Login successful", token});
         } catch (e) {
-            res.status(400).json({message: "Login error"});
             console.log(e.message);
+            res.status(400).json({message: "Login error"});
         }
     }
 }
