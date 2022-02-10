@@ -10,24 +10,7 @@ type Props = {
 };
 
 const TagList: React.FC<Props> = ({tagsList, typeId, handleFilters}) => {
-    // const { tags, error, loading } = useTypedSelector((state) => state.tag);
-
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
-    // @todo
-
-    // const { fetchTags } = useActions();
-
-    // useEffect(() => {
-    //   fetchTags();
-    // }, []);
-
-    // if (loading) {
-    //   return <h1>Loading...</h1>;
-    // }
-    // if (error) {
-    //   return <h1>{error}</h1>;
-    // }
 
     const handleToggleCheckbox = (tag: string) => {
         const currentIndex = selectedTags.indexOf(tag);
