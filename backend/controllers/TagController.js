@@ -29,6 +29,12 @@ class TagController {
 
   async update(req, res) {
     try {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        const errorMessage = errors.errors.map(({param, msg}) => ({[param]: msg}))
+        return res.status(400).json({message: "Validation error", errorMessage});
+      }
+
       const { id: _id } = req.params;
       const { title, tagTypeId, slug } = req.body;
       const isUnique = await Tag.find({
