@@ -1,6 +1,7 @@
 const Product = require("../models/Product");
 const Tag = require("../models/Tag");
 const {validationResult} = require("express-validator");
+const Admin = require("../models/Admin");
 
 class TagController {
   async create(req, res) {
@@ -73,8 +74,12 @@ class TagController {
 
   async getOne(req, res) {
     const { id } = req.params;
-    const tag = await Tag.findOne({ _id: id });
-    return res.json(tag);
+    const tag = await Tag.findById(id);
+    if (!tag) {
+      res.status(400).json({message: "ID not found"});
+    } else {
+      return res.json(tag);
+    }
   }
 }
 

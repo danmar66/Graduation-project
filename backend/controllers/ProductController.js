@@ -3,6 +3,7 @@ const {validationResult} = require("express-validator");
 const uuid = require("uuid");
 const path = require("path");
 const fs = require("fs");
+const Admin = require("../models/Admin");
 
 class ProductController {
     async create(req, res) {
@@ -40,6 +41,12 @@ class ProductController {
 
     async update(req, res) {
         try {
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                const errorMessage = errors.errors.map(({param, msg}) => ({[param]: msg}))
+                return res.status(400).json({message: "Validation error", errorMessage});
+            }
+
             const {id: _id} = req.params;
             let {title, price, description, tags, slug} = req.body;
             slug !== undefined ? (slug = slug.toLowerCase().replaceAll(" ", "-")) : null;
@@ -94,10 +101,19 @@ class ProductController {
 
     async getOne(req, res) {
         try {
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                const errorMessage = errors.errors.map(({param, msg}) => ({[param]: msg}))
+                return res.status(400).json({message: "Validation error", errorMessage});
+            }
+
             const {id} = req.params;
             const product = await Product.findById(id);
-            res.json(product);
-            // @todo реализовать функцию получения одного продукта
+            if (product === null) {
+                res.status(400).json({message: "ID not found"});
+            } else {
+                res.json({product});
+            }
         } catch (e) {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
@@ -118,6 +134,12 @@ class ProductController {
 
     async delete(req, res) {
         try {
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                const errorMessage = errors.errors.map(({param, msg}) => ({[param]: msg}))
+                return res.status(400).json({message: "Validation error", errorMessage});
+            }
+
             const {id: _id} = req.params;
             const product = await Product.findOne({_id});
             const imgPath = path.resolve(__dirname, "..", "static", product.img);
