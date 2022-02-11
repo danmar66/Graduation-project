@@ -10,7 +10,6 @@ class AdminController {
                 const errorMessage = errors.errors.map(({param, msg}) => ({[param]: msg}))
                 return res.status(400).json({message: "Validation error", errorMessage});
             }
-
             const {username, email, password} = req.body;
             const candidate = await Admin.findOne({$or: [{username}, {email}]});
             if (candidate) {
@@ -33,7 +32,6 @@ class AdminController {
             const errors = validationResult(req)
             if (!errors.isEmpty()) {
                 const errorMessage = errors.errors.map(({param, msg}) => ({[param]: msg}))
-
                 return res.status(400).json({message: "Validation error", errorMessage});
             }
             const {id} = req.params;
@@ -53,20 +51,18 @@ class AdminController {
 
     async delete(req, res) {
         try {
+            const errors = validationResult(req)
+            if (!errors.isEmpty()) {
+                const errorMessage = errors.errors.map(({param, msg}) => ({[param]: msg}))
+                return res.status(400).json({message: "Validation error", errorMessage});
+            }
             const {id} = req.params;
-            if (!id) {
+            const deletedAdmin = await Admin.findByIdAndDelete(id);
+            if (deletedAdmin === null) {
                 res.status(400).json({message: "ID not found"});
+            } else {
+                res.json({message: `Admin deleted`, deletedAdmin});
             }
-            if (id.match(/^[0-9a-fA-F]{24}$/)) {
-                const deletedAdmin = await Admin.findByIdAndDelete(id);
-                if (deletedAdmin === null) {
-                    res.status(400).json({message: "ID not found"});
-                } else {
-                    res.json({message: `Admin deleted`, deletedAdmin});
-                }
-            }
-
-            res.json({message: `Enter valid ID`});
         } catch (e) {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
@@ -86,14 +82,12 @@ class AdminController {
     async getOne(req, res) {
         try {
             const {id} = req.params;
-            if (id.match(/^[0-9a-fA-F]{24}$/)) {
-                if (!id) {
-                    res.status(400).json({message: "ID not found"});
-                }
-                const admin = await Admin.findById(id);
+            const admin = await Admin.findById(id);
+            if (!admin) {
+                res.status(400).json({message: "ID not found"});
+            } else {
                 return res.json(admin);
             }
-            res.json({message: `Enter valid ID`});
         } catch (e) {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
@@ -114,10 +108,12 @@ class AdminController {
         try {
             const {username, password} = req.body;
             const admin = await Admin.findOne({username});
+
             if (!admin) {
                 return res.status(400).json({message: `Admin ${username} not found`});
             }
             const passwordCheck = helper.passwordCheck(password, admin.password);
+
             if (!passwordCheck) {
                 return res.status(400).json({message: `Error. Type the correct password`});
             }
