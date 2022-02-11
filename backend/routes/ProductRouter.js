@@ -30,6 +30,9 @@ productRouter.delete("/product/delete/:id",
 productRouter.get("/product",
     ProductController.getAll);
 
+productRouter.get("/product/:filter",
+    ProductController.getAll);
+
 productRouter.get("/product/:id",
     validatingMongoIdMiddleware,
     ProductController.getOne);

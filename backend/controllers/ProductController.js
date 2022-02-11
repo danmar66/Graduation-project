@@ -3,7 +3,8 @@ const {validationResult} = require("express-validator");
 const uuid = require("uuid");
 const path = require("path");
 const fs = require("fs");
-const Admin = require("../models/Admin");
+const helpers = require('../helpers/Helpers')
+
 
 class ProductController {
     async create(req, res) {
@@ -86,13 +87,16 @@ class ProductController {
 
     async getAll(req, res) {
         try {
-            const {col, brand} = req.query;
-            console.log(req.query);
-            let products;
-            if (!col && !brand) {
-                products = await Product.find();
-            }
-            return res.json(products);
+            const filter = helpers.handleFilterQuery(req.params.filter)
+            const options = {
+                page: filter.page || 1,
+                limit: filter.limit || 2,
+                collation: {
+                    locale: 'en',
+                },
+            };
+            const products = await Product.paginate(filter, options);
+            return res.json(products.docs);
         } catch (e) {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
