@@ -7,7 +7,7 @@ const adminPanel = require("./routes/index");
 const path = require("path");
 
 const PORT = process.env.PORT || 5000;
-const url = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOSTNAME}/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOSTNAME}/${process.env.MONGO_DB}`;
 const app = express();
 app.use(
   cors({
