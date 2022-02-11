@@ -78,15 +78,13 @@ class TagTypeController {
 
     async getOne(req, res) {
         try {
-            const {id: _id} = req.params;
-            if (_id.match(/^[0-9a-fA-F]{24}$/)) {
-                if (!_id) {
-                    res.status(400).json({message: "ID not found"});
-                }
-                const tagType = await TagType.findById(_id);
+            const {id} = req.params;
+            const tagType = await Tag.findById(id);
+            if (!tagType) {
+                res.status(400).json({message: "ID not found"});
+            } else {
                 return res.json(tagType);
             }
-            res.json({message: `Enter valid ID`});
         } catch (e) {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
