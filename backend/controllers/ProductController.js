@@ -1,10 +1,9 @@
-const Product = require("../models/Product");
 const {validationResult} = require("express-validator");
+const Product = require("../models/Product");
+const helpers = require('../helpers/Helpers')
 const uuid = require("uuid");
 const path = require("path");
 const fs = require("fs");
-const helpers = require('../helpers/Helpers')
-
 
 class ProductController {
     async create(req, res) {
@@ -89,7 +88,7 @@ class ProductController {
 
     async getAll(req, res) {
         try {
-            const filter = helpers.handleFilterQuery(req.params.filter)
+            const filter = helpers.handleFilterQuery(req.url)
             const options = {
                 page: filter.page || 1,
                 limit: filter.limit || 2,
