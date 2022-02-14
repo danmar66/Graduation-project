@@ -48,6 +48,8 @@ class ProductController {
                 return res.status(400).json({message: "Validation error", errorMessage});
             }
 
+            // @todo переделать сохранение файла, добавить папки привязанные к datenow
+
             const {id: _id} = req.params;
             let {title, price, description, tags, slug} = req.body;
             slug !== undefined ? (slug = slug.toLowerCase().replaceAll(" ", "-")) : null;
