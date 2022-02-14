@@ -20,8 +20,8 @@ class Helpers {
     };
     handleFilterQuery = (filterString) => {
         let filterParams = {};
-
         filterString
+            .slice(filterString.lastIndexOf('/')+1)
             .split(";")
             .map((el) => el.split("="))
             .map((el) => el.map((el) => el.split(",")))
