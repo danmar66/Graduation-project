@@ -8,7 +8,7 @@ function AppRouter() {
 
   return (
     <Routes>
-      <Route path="*" element={<Navigate replace to="/" />} />
+      {/*<Route path="*" element={<Navigate replace to="/" />} />*/}
       {isAuth &&
         authRoutes.map(({ path, element }) => <Route key={path} path={path} element={element} />)}
       {publicRoutes.map(({ path, element }) => (
