@@ -5,7 +5,6 @@ const orderSchema = new Schema({
   productItems: [
     {
       item: { type: Schema.Types.ObjectId, ref: "Product", required: true },
-      price: { type: Number, required: true },
       quantity: { type: Number, default: 1 },
     },
   ],
