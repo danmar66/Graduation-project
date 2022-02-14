@@ -1,6 +1,7 @@
 const express = require("express");
 const OrderController = require("../controllers/OrderController");
 const authMiddleware = require("../middlewares/authMiddleware");
+const {check} = require('express-validator')
 const validatingMongoIdMiddleware = require('../middlewares/validatingMongoIdMiddleware')
 
 
@@ -10,7 +11,7 @@ orderRouter.post("/order",
     authMiddleware,
     OrderController.create);
 
-orderRouter.put("/order",
+orderRouter.put("/order/:id",
     authMiddleware,
     OrderController.update);
 
