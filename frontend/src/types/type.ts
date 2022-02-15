@@ -26,4 +26,4 @@ interface FetchTypeErrorAction {
 
 export type TypeAction = FetchTypeAction | FetchTypeSuccessAction | FetchTypeErrorAction;
 
-// задать интерфейс для payload
+// @todo задать интерфейс для payload

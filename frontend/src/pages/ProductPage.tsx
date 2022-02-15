@@ -21,7 +21,9 @@ function ProductPage() {
   const navigate = useNavigate();
 
   const addToBasketHandler = () => {
-    addToBasket(product._id, qty);
+    // addToBasket(product._id, qty);
+    addToBasket(product._id);
+
   };
 
   if (loading) {
