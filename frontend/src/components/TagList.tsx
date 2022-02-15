@@ -5,24 +5,12 @@ import {useTypedSelector} from "../hooks/useTypedSelector";
 
 type Props = {
     typeId: string;
-    handleFilters: any; // @todo remove any
-    tagsList: any;
-    filterTags: any;
+    handleFilters: (tag: string) => void;
+    tagsList: any[];
+    filterTags: any[];
 };
 
 const TagList: React.FC<Props> = ({tagsList, typeId, handleFilters, filterTags}) => {
-    // const [selectedTags, setSelectedTags] = useState<string[]>([]);
-    //
-    // const handleToggleCheckbox = (tag: string) => {
-    //     const currentIndex = selectedTags.indexOf(tag);
-    //     const newSelected = [...selectedTags];
-    //
-    //     currentIndex === -1 ? newSelected.push(tag) : newSelected.splice(currentIndex, 1);
-    //
-    //     setSelectedTags(newSelected);
-    //     // handleFilters(newSelected)
-    // };
-
     return (
         <div>
             {tagsList
@@ -32,17 +20,13 @@ const TagList: React.FC<Props> = ({tagsList, typeId, handleFilters, filterTags})
                 .map((tag: any) =>
                     tag.tagTypeId === typeId ? (
                         <Form.Check
-                            // checked={selectedTags.indexOf(tag.slug) !== -1}
                             checked={filterTags.indexOf(tag.slug) !== -1}
-
                             key={tag._id}
                             name={tag.slug}
                             type="checkbox"
                             id={tag._id}
                             label={tag.title}
-                            // onChange={() => handleToggleCheckbox(tag.slug)}
                             onChange={() => handleFilters(tag.slug)}
-
                         />
                     ) : null
                 )}
