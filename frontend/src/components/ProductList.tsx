@@ -9,7 +9,6 @@ import {FilterActionTypes} from "../types/filter";
 
 const ProductList: React.FC = () => {
     const {products, error, loading, page, limit} = useTypedSelector((state) => state.product);
-
     const {fetchProducts, addTagToFilter} = useActions();
 
     useEffect(() => {
@@ -24,8 +23,6 @@ const ProductList: React.FC = () => {
     }
 
 
-
-
     const blabla = addTagToFilter('ebalala')
 
     if (loading) {
@@ -37,7 +34,7 @@ const ProductList: React.FC = () => {
     return (
         <Row className="d-flex">
             <div className='d-flex justify-content-between mb-2'>
-                <button onClick={()=> blabla}/>
+                <button onClick={() => blabla}/>
                 <MySelect
                     value={selectedSort}
                     onChange={sortPosts}
