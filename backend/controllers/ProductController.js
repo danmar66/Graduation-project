@@ -1,5 +1,6 @@
 const {validationResult} = require("express-validator");
 const Product = require("../models/Product");
+const Tag = require("../models/Tag")
 const helpers = require('../helpers/Helpers')
 const uuid = require("uuid");
 const path = require("path");
@@ -88,57 +89,71 @@ class ProductController {
 
     async getAll(req, res) {
         try {
-            // let products
+            let products
             const filter = helpers.handleFilterQuery(req.url)
             const options = {
-                limit: 10 || filter.limit || 3,
+                limit: filter.limit || 3,
                 page: filter.page || 1,
                 collation: {
                     locale: 'en',
                 },
             };
+            console.log('filter = ', filter)
 
-            // console.log(filter.page)
-            // const {brand, device, color} = filter
+            if (filter.sort) {
+                Object.assign(options, {sort: filter['sort'][0]})
+            }
 
-            // if (!brand && !device && !color) {
-            //     products = await Product.paginate(filter, options);
-            // }
+            const reserved = [...Object.keys(options), 'sort']
+            const filterKeys = Object.keys(filter)
+            console.log('filter keys = ', filterKeys)
+            console.log('reserved = ', reserved)
+
+            const filterObject = filterKeys.reduce((acc, el) =>
+                    !reserved.includes(el)
+                        ?
+                        acc = {...acc, [el]: filter[el]}
+                        :
+                        acc
+                , {})
+            console.log('filter object = ', filterObject)
+
+            const filterValues = Object.values(filterObject).flat(Infinity)
+            console.log('filter values = ', filterValues)
+            const filterIDs = await Tag.find( {slug: {$in: filterValues}})
+            console.log('filter IDs = ', filterIDs)
+            filterObject['tags'] = {$all: filterIDs.map(item => item._id)}
+            console.log('changed filterObject = ', filterObject)
+
+
+            // console.log(options)
+            // let temp
+            // console.log(filter.sort)
             //
-            // if (!brand && !device && color) {
-            //     products = await Product.paginate(filter, options);
-            // }
+            // options['sort']= { [filter['sort'][0]]: filter['sort'][0].charAt(0) === '-' ? 'bad' : 'ass'}
             //
-            // if (!brand && device && color) {
-            //     products = await Product.paginate(filter, options);
-            // }
+            // console.log(options)
             //
-            // if (brand && device && color) {
-            //     products = await Product.paginate(filter, options);
+            // let bla = filter.sort.map(el => {
+            //     if (el.charAt(0) === "-") {
+            //         console.log({ el: 1})
+            //     } else {
+            //         console.log({el: -1})
+            //     }
+            // })
+            // el.charAt(0) === '-' ? {el: 1} : {el: -1})
+            // console.log(bla)
+            // console.log(temp)
+
+
+            // if (filter.sort) {
+            //     options["sort"] = {}
             // }
 
 
-            // const products = await Product.paginate(filter, options);
+            products = await Product.paginate({...filterObject}, options);
 
-            // tags: { $all: [  "61fd45362ab43b5757b8dcf5" ]  }
-            // "61fd45202ab43b5757b8dcee"
-
-
-            // const products = await Product.paginate({ tags: { $all: ["61fd45202ab43b5757b8dcee"] } },  {
-            //     page: 1,
-            //     limit: 20,
-            //     collation: {
-            //         locale: 'en',
-            //     },
-            // });
-
-            // const products = await Product.paginate({tags: {$all: ["61fd45202ab43b5757b8dcee"]}}, options);
-
-            const products = await Product.paginate({}, options);
-
-
-            // console.log('products',products)
-            return res.json(products.docs);
+            return res.json(products.docs.map(el => `${el.title} : ${el.price}`));
         } catch (e) {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
