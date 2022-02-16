@@ -1,4 +1,4 @@
-import { Axios } from "axios";
+import {Axios} from "axios";
 
 const configuredAxios = new Axios();
 

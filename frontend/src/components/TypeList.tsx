@@ -21,7 +21,7 @@ const TypeList: React.FC = () => {
     }, []);
 
     const handleFilters = ((filters: string) => {
-        const currentIndex=filterTags.indexOf(filters)
+        const currentIndex = filterTags.indexOf(filters)
         const newSelected = [...filterTags];
         currentIndex === -1 ? newSelected.push(filters) : newSelected.splice(currentIndex, 1)
         setFilterTags(newSelected)

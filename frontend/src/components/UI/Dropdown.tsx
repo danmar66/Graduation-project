@@ -1,7 +1,7 @@
 import React from 'react';
 import {Dropdown} from "react-bootstrap";
 
-const MyDropdown = ({options}:any, {defaultValue}:any) => {
+const MyDropdown = ({options}: any, {defaultValue}: any) => {
     return (
         <Dropdown>
             {defaultValue}

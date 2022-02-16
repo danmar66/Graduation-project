@@ -3,7 +3,7 @@ const ObjectID = require('mongoose').isValidObjectId
 module.exports = function (req, res, next) {
 
     try {
-        const { id } = req.params
+        const {id} = req.params
         const isValid = ObjectID(id)
 
         if (!isValid) {
@@ -13,6 +13,6 @@ module.exports = function (req, res, next) {
         next()
     } catch (e) {
         console.log(e);
-        return res.status(401).json({ message: "Validating error" });
+        return res.status(401).json({message: "Validating error"});
     }
 };

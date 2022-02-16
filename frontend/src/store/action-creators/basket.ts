@@ -1,5 +1,5 @@
-import { Dispatch } from "react";
-import { BasketAction, BasketActionTypes } from "../../types/basket";
+import {Dispatch} from "react";
+import {BasketAction, BasketActionTypes} from "../../types/basket";
 import axios from "axios";
 
 // export const addToBasket = (id: string, getState: any) => {
@@ -25,31 +25,31 @@ import axios from "axios";
 // };
 
 export const addToBasket = (id: string) => {
-  return {
-    type: BasketActionTypes.ADD_TO_BASKET,
-    payload: {
-      id
+    return {
+        type: BasketActionTypes.ADD_TO_BASKET,
+        payload: {
+            id
+        }
     }
-  }
 }
 
 export const deleteFromBasket = (id: string) => {
-  return {
-    type: BasketActionTypes.DELETE_FROM_BASKET,
-    payload: {
-      id
+    return {
+        type: BasketActionTypes.DELETE_FROM_BASKET,
+        payload: {
+            id
+        }
     }
-  }
 }
 
 export const adjustQty = (id: string, value: number) => {
-  return {
-    type: BasketActionTypes.ADJUST_QTY,
-    payload: {
-      id,
-      qty: value
+    return {
+        type: BasketActionTypes.ADJUST_QTY,
+        payload: {
+            id,
+            qty: value
+        }
     }
-  }
 }
 
 // export const deleteFromBasket =

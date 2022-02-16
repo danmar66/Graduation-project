@@ -14,7 +14,7 @@ const MySelect: React.FC<Props> = ({options, defaultValue, value, onChange}) => 
             onChange={event => onChange(event.target.value)}
         >
             <option disabled value="">{defaultValue}</option>
-            {options.map((option:any) =>
+            {options.map((option: any) =>
                 <option value={option.value} key={option.name}>{option.name}</option>
             )}
         </select>
