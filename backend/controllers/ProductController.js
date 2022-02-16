@@ -88,15 +88,56 @@ class ProductController {
 
     async getAll(req, res) {
         try {
+            // let products
             const filter = helpers.handleFilterQuery(req.url)
             const options = {
+                limit: 10 || filter.limit || 3,
                 page: filter.page || 1,
-                limit: filter.limit || 2,
                 collation: {
                     locale: 'en',
                 },
             };
-            const products = await Product.paginate(filter, options);
+
+            // console.log(filter.page)
+            // const {brand, device, color} = filter
+
+            // if (!brand && !device && !color) {
+            //     products = await Product.paginate(filter, options);
+            // }
+            //
+            // if (!brand && !device && color) {
+            //     products = await Product.paginate(filter, options);
+            // }
+            //
+            // if (!brand && device && color) {
+            //     products = await Product.paginate(filter, options);
+            // }
+            //
+            // if (brand && device && color) {
+            //     products = await Product.paginate(filter, options);
+            // }
+
+
+            // const products = await Product.paginate(filter, options);
+
+            // tags: { $all: [  "61fd45362ab43b5757b8dcf5" ]  }
+            // "61fd45202ab43b5757b8dcee"
+
+
+            // const products = await Product.paginate({ tags: { $all: ["61fd45202ab43b5757b8dcee"] } },  {
+            //     page: 1,
+            //     limit: 20,
+            //     collation: {
+            //         locale: 'en',
+            //     },
+            // });
+
+            // const products = await Product.paginate({tags: {$all: ["61fd45202ab43b5757b8dcee"]}}, options);
+
+            const products = await Product.paginate({}, options);
+
+
+            // console.log('products',products)
             return res.json(products.docs);
         } catch (e) {
             console.log(e.message);
