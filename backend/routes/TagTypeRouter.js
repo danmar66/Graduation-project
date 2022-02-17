@@ -4,7 +4,6 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const {check} = require("express-validator");
 const validatingMongoIdMiddleware = require('../middlewares/validatingMongoIdMiddleware')
 
-
 const tagTypeRouter = new express.Router();
 
 tagTypeRouter.post("/tag_type/create",
