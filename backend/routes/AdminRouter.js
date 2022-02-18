@@ -10,7 +10,7 @@ adminRouter.post("/admin/create",
     authMiddleware,
     [
         check('username', 'Username must be filled').notEmpty(),
-        check('email', 'Email must be filled').isEmail().notEmpty(),
+        check('email', 'Enter valid email').isEmail().notEmpty(),
         check('password', 'Password must be 4 to 8 characters').notEmpty().isLength({min: 4, max: 8}),
     ],
     AdminController.create);
