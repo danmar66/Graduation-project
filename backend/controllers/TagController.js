@@ -26,6 +26,8 @@ class TagController {
         } catch (e) {
             console.log(e);
         }
+
+        // #swagger.tags = ['tag']
     }
 
     async update(req, res) {
@@ -54,6 +56,8 @@ class TagController {
         } catch (e) {
             console.log(e);
         }
+
+        // #swagger.tags = ['tag']
     }
 
     async delete(req, res) {
@@ -65,11 +69,15 @@ class TagController {
         } catch (e) {
             console.log(e);
         }
+
+        // #swagger.tags = ['tag']
     }
 
     async getAll(req, res) {
         const tags = await Tag.find();
         return res.json(tags);
+
+        // #swagger.tags = ['tag']
     }
 
     async getOne(req, res) {
@@ -80,6 +88,8 @@ class TagController {
         } else {
             return res.json(tag);
         }
+
+        // #swagger.tags = ['tag']
     }
 }
 

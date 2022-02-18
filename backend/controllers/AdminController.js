@@ -25,6 +25,8 @@ class AdminController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['admin']
     }
 
     async update(req, res) {
@@ -47,6 +49,8 @@ class AdminController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['admin']
     }
 
     async delete(req, res) {
@@ -67,6 +71,8 @@ class AdminController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['admin']
     }
 
     async getAll(req, res) {
@@ -77,6 +83,8 @@ class AdminController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['admin']
     }
 
     async getOne(req, res) {
@@ -92,6 +100,8 @@ class AdminController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['admin']
     }
 
     async getUser(req, res) {
@@ -102,6 +112,8 @@ class AdminController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['admin']
     }
 
     async login(req, res) {
@@ -124,6 +136,8 @@ class AdminController {
             console.log(e.message);
             res.status(400).json({message: "Login error"});
         }
+
+        // #swagger.tags = ['admin']
     }
 }
 

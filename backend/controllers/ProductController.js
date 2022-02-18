@@ -38,6 +38,8 @@ class ProductController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['product']
     }
 
     async update(req, res) {
@@ -85,6 +87,8 @@ class ProductController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['product']
     }
 
     async getAll(req, res) {
@@ -128,6 +132,8 @@ class ProductController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['product']
     }
 
     async getOne(req, res) {
@@ -149,6 +155,8 @@ class ProductController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['product']
     }
 
     async getOneBySlug(req, res) {
@@ -161,6 +169,8 @@ class ProductController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['product']
     }
 
     async delete(req, res) {
@@ -185,6 +195,8 @@ class ProductController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['product']
     }
 }
 

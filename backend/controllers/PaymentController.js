@@ -47,6 +47,8 @@ class PaymentController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['payment']
     }
 }
 

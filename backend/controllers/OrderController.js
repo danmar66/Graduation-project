@@ -31,6 +31,8 @@ class OrderController {
             console.log(e.message);
             res.status(424).json({error: 'Unknown error'});
         }
+
+        // #swagger.tags = ['order']
     }
 
     async getAll(req, res) {
@@ -41,6 +43,8 @@ class OrderController {
             console.log(e.message);
             res.status(424).json({error: 'Unknown error'});
         }
+
+        // #swagger.tags = ['order']
     }
 
     async getOne(req, res) {
@@ -62,6 +66,8 @@ class OrderController {
             console.log(e.message);
             res.status(424).json({error: 'Unknown error'});
         }
+
+        // #swagger.tags = ['order']
     }
 
     async update(req, res) {
@@ -71,6 +77,8 @@ class OrderController {
             console.log(e.message);
             res.status(424).json({error: 'Unknown error'});
         }
+
+        // #swagger.tags = ['order']
     }
 
     async delete(req, res) {
@@ -80,6 +88,8 @@ class OrderController {
             console.log(e.message);
             res.status(424).json({error: 'Unknown error'});
         }
+
+        // #swagger.tags = ['order']
     }
 }
 

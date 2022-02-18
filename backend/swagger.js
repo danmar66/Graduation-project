@@ -11,17 +11,17 @@ const doc = {
     // schemes: ['http', 'https'],
     consumes: ['application/json'],
     produces: ['application/json'],
-    tags: [
-        {
-            "name": "admin",
-        },
-        {
-            "name": "tag",
-        },
-        {
-            "name": "type",
-        }
-    ],
+    // tags: [
+    //     {
+    //         "name": "admin",
+    //     },
+    //     {
+    //         "name": "tag",
+    //     },
+    //     {
+    //         "name": "type",
+    //     }
+    // ],
     securityDefinitions: {
         apiKeyAuth: {
             type: "apiKey",
@@ -66,5 +66,5 @@ const outputFile = './swagger-output.json'
 const endpointsFiles = ['./index.js']
 
 swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
-    require('./index')           // Your project's root file
+    require('./index')
 })

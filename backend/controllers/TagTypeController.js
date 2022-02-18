@@ -23,6 +23,8 @@ class TagTypeController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['type']
     }
 
     async update(req, res) {
@@ -45,6 +47,8 @@ class TagTypeController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['type']
     }
 
     async delete(req, res) {
@@ -65,6 +69,8 @@ class TagTypeController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['type']
     }
 
     async getAll(req, res) {
@@ -74,6 +80,8 @@ class TagTypeController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['type']
     }
 
     async getOne(req, res) {
@@ -89,6 +97,8 @@ class TagTypeController {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
         }
+
+        // #swagger.tags = ['type']
     }
 }
 
