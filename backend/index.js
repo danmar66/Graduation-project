@@ -5,6 +5,8 @@ const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const adminPanel = require("./routes/index");
 const path = require("path");
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger-output.json')
 
 const PORT = process.env.PORT || 5000;
 const url = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOSTNAME}/${process.env.MONGO_DB}`;
@@ -19,6 +21,8 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "static")));
 app.use(fileUpload({}));
 app.use("/api", adminPanel);
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 async function start() {
     try {
