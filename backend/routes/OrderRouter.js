@@ -7,7 +7,13 @@ const validatingMongoIdMiddleware = require('../middlewares/validatingMongoIdMid
 const orderRouter = new express.Router();
 
 orderRouter.post("/order",
-    authMiddleware,
+    [
+        check('productItems', 'Items is not specified').notEmpty().isArray(),
+        check('deliveryAddress', 'Address must be filled').notEmpty(),
+        check('customerName', 'Name must be specified').notEmpty(),
+        check('customerPhone', 'Phone must be specified').notEmpty(),
+        check('customerEmail', 'Enter valid email').notEmpty().isEmail()
+    ],
     OrderController.create);
 
 orderRouter.put("/order/:id",
