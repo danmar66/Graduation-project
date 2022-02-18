@@ -6,27 +6,48 @@ const Product = require("../models/Product");
 class PaymentController {
     async createSession(req, res) {
         try {
-
-            // const storeItems = new Map([
-            //     [1, {priceInCents: 10000, name: 'Learn Stripe'}],
-            //     [2, {priceInCents: 20000, name: 'Learn Checkout'}]
-            // ])
             const order = await Order.findById(req.body.id)
-            // console.log('order ', order)
             const orderItems = order['productItems']
-            console.log('order items ', orderItems)
-            // const product = await Product.findById("61fd4e80241e49671eb3aa12")
-            // console.log('product ', product)
-            const products = await Product.find({_id: orderItems.map(product => product.item)})
-            // console.log('products ', products)
-            const productPrepare = products.map(item => {
-                return {
-                    title: item.title,
-                    price: item.price,
-                }
-            })
-            console.log("products Prepared data = ", productPrepare)
+            // console.log('order items ', orderItems)
 
+            // console.log(order['productItems'])
+
+            let result = []
+
+            for (let i = 0; i < orderItems.length; i++) {
+                // console.log(orderItems[i])
+                const product = await Product.find({_id: orderItems[i]['item']})
+
+                // const products = await Product.find({_id: orderItems.map(product => product.item)})
+                // console.log('products ', products)
+                const productPrepare = product.map(item => {
+                    return {
+                        id: item._id,
+                        title: item.title,
+                        price: item.price,
+                        qty: orderItems[i]['quantity']
+                    }
+                })
+                console.log("products Prepared data = ", productPrepare)
+                result.push(productPrepare)
+
+
+            }
+
+            console.log('RESULTTTT ', result)
+
+            // const products = await Product.find({_id: orderItems.map(product => product.item)})
+            // console.log('products ', products)
+            // const productPrepare = products.map(item => {
+            //     return {
+            //         id: item._id,
+            //         title: item.title,
+            //         price: item.price,
+            //     }
+            // })
+            // console.log("products Prepared data = ", productPrepare)
+
+            // console.log('LOGG = ', orderItems[0]["item"] === productPrepare[0]['id'])
 
             // const session = await stripe.checkout.sessions.create({
             //     payment_method_types: ['card'],
