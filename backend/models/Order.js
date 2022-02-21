@@ -1,4 +1,6 @@
 const {Schema, model} = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 
 const orderSchema = new Schema({
     orderDate: {type: Date, default: Date.now},
@@ -15,5 +17,7 @@ const orderSchema = new Schema({
     totalPrice: {type: Number, required: true},
     checkPayment: {type: Boolean, default: false},
 });
+
+orderSchema.plugin(mongoosePaginate)
 
 module.exports = model("Order", orderSchema);

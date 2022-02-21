@@ -1,4 +1,6 @@
 const {Schema, model, Types} = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 
 const Tag = new Schema(
     {
@@ -8,5 +10,7 @@ const Tag = new Schema(
     },
     {timestamps: {createdAt: "createdDate", updatedAt: "updatedDate"}}
 );
+
+Tag.plugin(mongoosePaginate)
 
 module.exports = model("Tag", Tag);
