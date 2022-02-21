@@ -94,11 +94,14 @@ class ProductController {
     async getAll(req, res) {
         try {
             console.log('Start', `\n\n`)
+            const url = decodeURIComponent(req.url)
+            console.log('decoded uri ', url)
+
             // console.log('req url ', req.url.slice(req.url.lastIndexOf('/')+1) === '')
             let filter
-            req.url.includes('=') === true
+            url.includes('=') === true
                 ?
-                filter = helpers.handleFilterQuery(req.url)
+                filter = helpers.handleFilterQuery(url)
                 :
                 filter = {}
 
