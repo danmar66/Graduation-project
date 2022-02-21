@@ -93,10 +93,19 @@ class ProductController {
 
     async getAll(req, res) {
         try {
-            let products
-            const filter = helpers.handleFilterQuery(req.url)
+            console.log('Start', `\n\n`)
+            // console.log('req url ', req.url.slice(req.url.lastIndexOf('/')+1) === '')
+            let filter
+            req.url.includes('=') === true
+                ?
+                filter = helpers.handleFilterQuery(req.url)
+                :
+                filter = {}
+
+            console.log('OBJECT VALUES FILTER = ', Object.values(filter))
+            console.log(Object.values(filter) === [undefined] ? 'values undefined' : 'values exist')
             const options = {
-                limit: filter.limit || 3,
+                limit: filter.limit || 20,
                 page: filter.page || 1,
                 collation: {
                     locale: 'en',
@@ -126,7 +135,8 @@ class ProductController {
                 filterObject['tags'] = {$all: filterIDs.map(item => item._id)}
             }
             console.log('changed filterObject = ', filterObject)
-            products = await Product.paginate({...filterObject}, options);
+            const products = await Product.paginate({...filterObject}, options);
+            console.log('End', `\n\n`)
             return res.json(products.docs);
         } catch (e) {
             console.log(e.message);
