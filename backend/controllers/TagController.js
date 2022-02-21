@@ -1,7 +1,6 @@
 const Product = require("../models/Product");
 const Tag = require("../models/Tag");
 const {validationResult} = require("express-validator");
-const Admin = require("../models/Admin");
 
 class TagController {
     async create(req, res) {
@@ -74,8 +73,17 @@ class TagController {
     }
 
     async getAll(req, res) {
-        const tags = await Tag.find();
-        return res.json(tags);
+        // const tags = await Tag.find(); // @todo add paginator
+        const options = {
+            limit: 20,
+            page: 1,
+            collation: {
+                locale: 'en',
+            },
+        }
+        const tags = await Tag.paginate({}, options);
+
+        return res.json(tags.docs);
 
         // #swagger.tags = ['tag']
     }
