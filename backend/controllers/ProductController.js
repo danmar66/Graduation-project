@@ -96,17 +96,10 @@ class ProductController {
             console.log('Start', `\n\n`)
             const url = decodeURIComponent(req.url)
             console.log('decoded uri ', url)
-
-            // console.log('req url ', req.url.slice(req.url.lastIndexOf('/')+1) === '')
             let filter
             url.includes('=') === true
-                ?
-                filter = helpers.handleFilterQuery(url)
-                :
-                filter = {}
-
-            console.log('OBJECT VALUES FILTER = ', Object.values(filter))
-            console.log(Object.values(filter) === [undefined] ? 'values undefined' : 'values exist')
+                ? filter = helpers.handleFilterQuery(url)
+                : filter = {}
             const options = {
                 limit: filter.limit || 20,
                 page: filter.page || 1,
@@ -114,32 +107,22 @@ class ProductController {
                     locale: 'en',
                 },
             };
-            console.log('filter = ', filter)
             if (filter.sort) {
                 Object.assign(options, {sort: filter['sort'][0]})
             }
             const reserved = [...Object.keys(options), 'sort']
             const filterKeys = Object.keys(filter)
-            console.log('filter keys = ', filterKeys)
-            console.log('reserved = ', reserved)
             const filterObject = filterKeys.reduce((acc, el) =>
                     !reserved.includes(el)
-                        ?
-                        acc = {...acc, [el]: filter[el]}
-                        :
-                        acc
+                        ? acc = {...acc, [el]: filter[el]}
+                        : acc
                 , {})
-            console.log('filter object = ', filterObject)
             const filterValues = Object.values(filterObject).flat(Infinity)
-            console.log('filter values = ', filterValues)
             if (Object.keys(filterObject).length) {
                 const filterIDs = await Tag.find({slug: {$in: filterValues}})
-                console.log('filter IDs = ', filterIDs)
                 filterObject['tags'] = {$all: filterIDs.map(item => item._id)}
             }
-            console.log('changed filterObject = ', filterObject)
             const products = await Product.paginate({...filterObject}, options);
-            console.log('End', `\n\n`)
             return res.json(products.docs);
         } catch (e) {
             console.log(e.message);
