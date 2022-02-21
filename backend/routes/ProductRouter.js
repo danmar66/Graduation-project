@@ -19,6 +19,13 @@ productRouter.post("/product/create",
 productRouter.put("/product/edit/:id",
     authMiddleware,
     validatingMongoIdMiddleware,
+    [
+        check('title', 'Title must be filled').notEmpty().isString(),
+        check('price', 'Specify the price').notEmpty().isFloat(),
+        check('description', 'Description must be filled').notEmpty().isString(),
+        check('slug', 'Slug must be filled').notEmpty().isString(),
+        check('tags', 'Specify the tags array').notEmpty()
+    ],
     ProductController.update);
 
 productRouter.delete("/product/delete/:id",
@@ -26,7 +33,7 @@ productRouter.delete("/product/delete/:id",
     validatingMongoIdMiddleware,
     ProductController.delete);
 
-productRouter.get("/product",
+productRouter.get("/product/",
     ProductController.getAll);
 
 productRouter.get("/product/:filter",
