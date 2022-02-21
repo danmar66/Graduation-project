@@ -1,11 +1,16 @@
-import React from "react";
-import {Button, Container, FormControl, InputGroup, Navbar} from "react-bootstrap";
+import React, {useState} from "react";
+import {Button, Card, Container, FormControl, InputGroup, Navbar, Offcanvas} from "react-bootstrap";
 import {NavLink, useNavigate} from "react-router-dom";
-import {BASKET_ROUTE, CATALOG_ROUTE} from "../utils/consts";
+import {CATALOG_ROUTE} from "../utils/consts";
 
 // @todo Обернуть в функцию useEffect
 
 function NavBar() {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     let isAuth = false;
     const navigate = useNavigate();
     // @todo получение user context для определения авторизован ли пользователь
@@ -33,9 +38,11 @@ function NavBar() {
                             justifyContent: "center",
                             alignItems: "center",
                         }}
-                        onClick={() => navigate(BASKET_ROUTE)}
+                        // onClick={() => navigate(BASKET_ROUTE)}
+                        onClick={handleShow}
+
                     >
-                        Корзина
+                        Basket
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -51,6 +58,28 @@ function NavBar() {
                     </Button>
                 </Container>
             </Navbar>
+            <Offcanvas
+                show={show}
+                onHide={handleClose}
+                style={{maxWidth: "70vh"}}
+                placement={"end"}
+            >
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title>Your goods</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body className="d-flex flex-column  align-items-center justify-content-start">
+                    <Card
+                        style={{width: "100%", minHeight: "2rem"}}
+                        className='d-flex justify-content-center'
+                    >
+                        <h1>Product</h1>
+                    </Card>
+
+                    <Button variant="outline-success" className='mt-3'>
+                        Proceed to checkout
+                    </Button>
+                </Offcanvas.Body>
+            </Offcanvas>
         </>
     );
 }
