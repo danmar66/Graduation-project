@@ -7,7 +7,13 @@ const initialState: BasketState = {
 export const basketReducer = (state = initialState, action: BasketAction) => {
     switch (action.type) {
         case BasketActionTypes.ADD_TO_BASKET:
-            return {}
+            return {
+                ...state,
+                basketItems: [
+                    ...state.basketItems,
+                    action.payload
+                ]
+            }
         case BasketActionTypes.DELETE_FROM_BASKET:
             return {}
         case BasketActionTypes.ADJUST_QTY:
