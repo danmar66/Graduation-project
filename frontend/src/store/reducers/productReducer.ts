@@ -5,7 +5,7 @@ const initialState: ProductState = {
     loading: false,
     error: null,
     page: 1,
-    limit: 5,
+    limit: 20,
 };
 
 export const productReducer = (state = initialState, action: ProductAction): ProductState => {
