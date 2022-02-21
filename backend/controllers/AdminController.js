@@ -129,7 +129,7 @@ class AdminController {
             if (!passwordCheck) {
                 return res.status(400).json({message: `Error. Type the correct password`});
             }
-            const token = helper.generateAccessToken(admin._id);
+            const token = "Bearer " + helper.generateAccessToken(admin._id);
 
             res.json({message: "Login successful", token});
         } catch (e) {
