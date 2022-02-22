@@ -15,7 +15,7 @@ import {
     HOME_PAGE,
     CATALOG_ROUTE
 } from "../utils/consts";
-import TagsList from "../components/AdminPanelLIsts/TagsList";
+import TagsTable from "../components/AdminPanelTables/TagsTable";
 
 type RouterType = {
     path: string;
@@ -33,7 +33,7 @@ export const authRoutes: RouterType[] = [
     },
     {
         path: '/admin/tags',
-        element: <TagsList/>
+        element: <TagsTable/>
     }
 
 ];
