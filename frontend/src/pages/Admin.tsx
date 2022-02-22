@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import {ButtonGroup, Button, Col, Container, Row, Offcanvas} from "react-bootstrap";
-import Sidebar from "../components/Sidebar";
-import ProductList from "../components/ProductList";
+import {ButtonGroup, Button, Col, Container, Row, Offcanvas, Pagination} from "react-bootstrap";
 import AdminsList from "../components/AdminPanelLIsts/AdminsList";
+import TagsList from "../components/AdminPanelLIsts/TagsList";
 
 function Admin() {
     const [show, setShow] = useState(false);
@@ -10,9 +9,22 @@ function Admin() {
     const handleShow = () => setShow(true)
     const styleButton = {width: "18rem", marginBottom: "0.5rem", borderRadius: "0.3rem"}
 
+    let active = 2;
+    let items = [];
+    for (let number = 1; number <= 5; number++) {
+        items.push(
+            <Pagination.Item
+                key={number}
+                active={number === active}
+            >
+                {number}
+            </Pagination.Item>,
+        );
+    }
+
     return <Container>
         <Row className="mt-3">
-            <Offcanvas show={show} onHide={handleClose} style={{maxWidth: "30vh"}}>
+            <Offcanvas show={show} onHide={handleClose} style={{width: "300px"}}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Select table</Offcanvas.Title>
                 </Offcanvas.Header>
@@ -53,17 +65,24 @@ function Admin() {
             </Offcanvas>
 
             <Col md={2}>
-                    <Button
-                        style={{width: "100%"}}
-                        variant="dark"
-                        className='mb-2'
-                        onClick={handleShow}
-                    >
-                        Select table
-                    </Button>
+                <Button
+                    style={{width: "100%"}}
+                    variant="dark"
+                    className='mb-2'
+                    onClick={handleShow}
+                >
+                    Select table
+                </Button>
             </Col>
-            <Col md={10}>
-                <AdminsList />
+        </Row>
+        <Row>
+            <Col md={12}>
+                <TagsList/>
+            </Col>
+        </Row>
+        <Row>
+            <Col className='d-flex align-items-center justify-content-center'>
+                <Pagination>{items}</Pagination>
             </Col>
         </Row>
     </Container>;
