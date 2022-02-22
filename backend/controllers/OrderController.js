@@ -37,7 +37,14 @@ class OrderController {
 
     async getAll(req, res) {
         try {
-            const orders = await Order.find()
+            const options = {
+                limit: 20,
+                page: 1,
+                collation: {
+                    locale: 'en',
+                },
+            }
+            const orders = await Order.paginate({}, options);
             res.json(orders)
         } catch (e) {
             console.log(e.message);

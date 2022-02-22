@@ -75,7 +75,15 @@ class TagTypeController {
 
     async getAll(req, res) {
         try {
-            return res.json(await TagType.find());
+            const options = {
+                limit: req.query.limit || 20,
+                page: req.query.page || 1,
+                collation: {
+                    locale: 'en',
+                },
+            }
+            const types = await TagType.paginate({}, options);
+            return res.json(types.docs);
         } catch (e) {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
@@ -87,7 +95,7 @@ class TagTypeController {
     async getOne(req, res) {
         try {
             const {id} = req.params;
-            const tagType = await Tag.findById(id);
+            const tagType = await TagType.findById(id);
             if (!tagType) {
                 res.status(400).json({message: "ID not found"});
             } else {

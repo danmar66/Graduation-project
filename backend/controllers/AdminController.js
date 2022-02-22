@@ -77,7 +77,14 @@ class AdminController {
 
     async getAll(req, res) {
         try {
-            const admins = await Admin.find();
+            const options = {
+                limit: 20,
+                page: 1,
+                collation: {
+                    locale: 'en',
+                },
+            }
+            const admins = await Admin.paginate({}, options);
             return res.json(admins);
         } catch (e) {
             console.log(e.message);
