@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import {ButtonGroup, Button, Col, Container, Row, Offcanvas, Pagination} from "react-bootstrap";
-import AdminsList from "../components/AdminPanelLIsts/AdminsList";
-import TagsList from "../components/AdminPanelLIsts/TagsList";
+import AdminsTable from "../components/AdminPanelTables/AdminsTable";
+import TagsTable from "../components/AdminPanelTables/TagsTable";
+import TypesTable from "../components/AdminPanelTables/TypesTable";
+import ProductsTable from "../components/AdminPanelTables/ProductsTable";
 
 function Admin() {
     const [show, setShow] = useState(false);
@@ -77,7 +79,7 @@ function Admin() {
         </Row>
         <Row>
             <Col md={12}>
-                <TagsList/>
+                <ProductsTable/>
             </Col>
         </Row>
         <Row>
