@@ -1,7 +1,7 @@
 import {TagState, TagAction, TTagsAction} from "../../types/tag";
 
 const initialState: TagState = {
-    tags: [],
+    tags: {},
     error: null,
     loading: false,
 };

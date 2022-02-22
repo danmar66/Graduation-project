@@ -83,7 +83,7 @@ class TagController {
         }
         const tags = await Tag.paginate({}, options);
 
-        return res.json(tags.docs);
+        return res.json(tags);
 
         // #swagger.tags = ['tag']
     }

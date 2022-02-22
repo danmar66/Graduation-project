@@ -1,5 +1,5 @@
 export interface TagState {
-    tags: any[];
+    tags: any; // @todo remove any
     loading: boolean;
     error: null | string;
 }

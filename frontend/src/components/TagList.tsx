@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {Form} from "react-bootstrap";
-import {useActions} from "../hooks/useActions";
-import {useTypedSelector} from "../hooks/useTypedSelector";
 
 type Props = {
     typeId: string;

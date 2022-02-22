@@ -27,6 +27,8 @@ const TypeList: React.FC = () => {
         setFilterTags(newSelected)
     })
 
+    console.log(tags)
+
     if (loading) {
         return <h1>Loading...</h1>;
     }
@@ -45,7 +47,7 @@ const TypeList: React.FC = () => {
                             <TagList
                                 handleFilters={(filters: string) => handleFilters(filters)}
                                 typeId={type._id}
-                                tagsList={tags}
+                                tagsList={tags.docs}
                                 filterTags={filterTags}
                             />
                         </Accordion.Body>
