@@ -95,6 +95,7 @@ class ProductController {
                 collation: {
                     locale: 'en',
                 },
+                select: "-dateAdded -createdDate -updatedDate -__v"
             };
             if (filter.sort) {
                 Object.assign(options, {sort: filter['sort'][0]})
@@ -112,7 +113,7 @@ class ProductController {
                 filterObject['tags'] = {$all: filterIDs.map(item => item._id)}
             }
             const products = await Product.paginate({...filterObject}, options);
-            return res.json(products.docs);
+            return res.json(products);
         } catch (e) {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
