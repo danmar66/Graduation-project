@@ -83,7 +83,7 @@ class TagTypeController {
                 },
             }
             const types = await TagType.paginate({}, options);
-            return res.json(types.docs);
+            return res.json(types);
         } catch (e) {
             console.log(e.message);
             res.status(424).json({error: "Unknown error"});
