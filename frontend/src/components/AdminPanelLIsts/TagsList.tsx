@@ -4,7 +4,7 @@ import {useActions} from "../../hooks/useActions";
 import {fetchTags} from "../../store/action-creators/tag";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
-const AdminsList = () => {
+const TagsList = () => {
     const {tags, loading, error} = useTypedSelector(state => state.tag)
 
     const {fetchTags} = useActions()
@@ -73,4 +73,4 @@ const AdminsList = () => {
     );
 };
 
-export default AdminsList;
+export default TagsList;

@@ -4,13 +4,13 @@ import {useActions} from "../../hooks/useActions";
 import {fetchTags} from "../../store/action-creators/tag";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
-const AdminsList = () => {
-    const {tags, loading, error} = useTypedSelector(state => state.tag)
+const TypesList = () => {
+    const {types, loading, error} = useTypedSelector(state => state.type)
 
-    const {fetchTags} = useActions()
+    const {fetchTypes} = useActions()
 
     useEffect(() => {
-        fetchTags();
+        fetchTypes();
     }, []);
 
     if (loading) {
@@ -26,7 +26,7 @@ const AdminsList = () => {
             <tr>
                 {/*{loading ? null :*/}
                 {
-                    Object.keys(tags.docs[0]).map((el, i) => {
+                    Object.keys(types.docs[0]).map((el, i) => {
                         return <th key={i}>{el}</th>
                     })}
                 <th>Control</th>
@@ -35,7 +35,7 @@ const AdminsList = () => {
             <tbody>
             {/*{loading ? null :*/}
             {
-                tags.docs.map((el: any) => {
+                types.docs.map((el: any) => {
                     return (
                         <tr key={el._id}>
                             {Object
@@ -73,4 +73,4 @@ const AdminsList = () => {
     );
 };
 
-export default AdminsList;
+export default TypesList;

@@ -19,11 +19,11 @@ const ProductList: React.FC = () => {
 
     const sortPosts = (sort: any) => {
         setSelectedSort(sort)
-        console.log(sort)
+        // console.log(sort)
     }
 
 
-    const blabla = addTagToFilter('ebalala')
+    // const blabla = addTagToFilter('ebalala')
 
     if (loading) {
         return <h1>Loading...</h1>;
@@ -34,7 +34,7 @@ const ProductList: React.FC = () => {
     return (
         <Row className="d-flex">
             <div className='d-flex justify-content-between mb-2'>
-                <button onClick={() => blabla}/>
+                {/*<button onClick={() => blabla}/>*/}
                 <MySelect
                     value={selectedSort}
                     onChange={sortPosts}

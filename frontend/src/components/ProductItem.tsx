@@ -9,7 +9,7 @@ import {useDispatch} from "react-redux";
 function ProductItem({product}: any) {
     // @todo убрать any
     const navigate = useNavigate();
-    const dispath = useDispatch();
+    // const dispath = useDispatch();
     return (
         <Col md={6} sm={12} lg={4} className="mb-3">
             <Card border={"black"} style={{width: "100%"}}>
@@ -43,10 +43,14 @@ function ProductItem({product}: any) {
                     </Card.Text>
                     <Card.Subtitle>Price: {product.price} $</Card.Subtitle>
                     <div style={{display: "flex"}}>
-                        <Button className="mt-2" variant="outline-success" style={{width: "100vh"}}
-                            onClick={() => {
-                                dispath(addToBasket(product.title))
-                            }}>
+                        <Button
+                            className="mt-2"
+                            variant="outline-success"
+                            style={{width: "100vh"}}
+                            // onClick={() => {
+                            //     dispath(addToBasket(product.title))
+                            // }}
+                        >
                             Buy
                         </Button>
                     </div>
