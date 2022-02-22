@@ -2,7 +2,7 @@ import {OneProductAction, OneProductActionTypes, OneProductState} from "../../ty
 
 const initialState: OneProductState = {
     product: {},
-    loading: false,
+    loading: true,
     error: null,
 };
 

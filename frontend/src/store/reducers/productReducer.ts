@@ -2,7 +2,7 @@ import {ProductAction, ProductActionTypes, ProductState} from "../../types/produ
 
 const initialState: ProductState = {
     products: [],
-    loading: false,
+    loading: true,
     error: null,
     page: 1,
     limit: 20,
