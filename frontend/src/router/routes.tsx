@@ -4,6 +4,8 @@ import Basket from "../pages/Basket";
 import ProductPage from "../pages/ProductPage";
 import HomePage from "../pages/HomePage";
 import Catalog from "../pages/Catalog";
+import Test from "../pages/Test"
+
 import {
     ADMIN_ROUTE,
     BASKET_ROUTE,
@@ -13,6 +15,7 @@ import {
     HOME_PAGE,
     CATALOG_ROUTE
 } from "../utils/consts";
+import TagsList from "../components/AdminPanelLIsts/TagsList";
 
 type RouterType = {
     path: string;
@@ -23,7 +26,16 @@ export const authRoutes: RouterType[] = [
     {
         path: ADMIN_ROUTE,
         element: <Admin/>,
+    },
+    {
+        path: '/test',
+        element: <Test/>
+    },
+    {
+        path: '/admin/tags',
+        element: <TagsList/>
     }
+
 ];
 
 export const publicRoutes = [
