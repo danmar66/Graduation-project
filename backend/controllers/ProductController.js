@@ -84,9 +84,7 @@ class ProductController {
 
     async getAll(req, res) {
         try {
-            console.log('Start', `\n\n`)
             const url = decodeURIComponent(req.url)
-            console.log('decoded uri ', url)
             let filter
             url.includes('=') === true
                 ? filter = helpers.handleFilterQuery(url)
@@ -186,55 +184,6 @@ class ProductController {
 
         // #swagger.tags = ['product']
     }
-
-    // async update(req, res) {
-    //     try {
-    //         const errors = validationResult(req)
-    //         if (!errors.isEmpty()) {
-    //             const errorMessage = errors.errors.map(({param, msg}) => ({[param]: msg}))
-    //             return res.status(400).json({message: "Validation error", errorMessage});
-    //         }
-    //
-    //         // @todo переделать сохранение файла, добавить папки привязанные к datenow
-    //
-    //         const {id: _id} = req.params;
-    //         let {title, price, description, tags, slug} = req.body;
-    //         slug !== undefined ? (slug = slug.toLowerCase().replaceAll(" ", "-")) : null;
-    //         if (req.files) {
-    //             const product = await Product.findOne({_id});
-    //             const {img} = req.files;
-    //             let fileName = uuid.v4() + ".jpg";
-    //             img.mv(path.resolve(__dirname, "..", "static", fileName));
-    //             const imgPath = path.resolve(__dirname, "..", "static", product.img);
-    //             console.log(imgPath);
-    //             try {
-    //                 fs.unlinkSync(imgPath);
-    //             } catch (error) {
-    //                 console.log(error);
-    //             }
-    //             const updatedProduct = await Product.findOneAndUpdate(
-    //                 {_id},
-    //                 {img: fileName, title, price, description, tags, slug},
-    //                 {new: true}
-    //             );
-    //             return res.json({message: `Product updated`, updatedProduct});
-    //         }
-    //         if (tags) {
-    //             return (tags = JSON.parse(tags));
-    //         }
-    //         const updatedProduct = await Product.findOneAndUpdate(
-    //             {_id},
-    //             {title, price, description, tags, slug},
-    //             {new: true}
-    //         );
-    //         return res.json({message: `Product updated`, updatedProduct});
-    //     } catch (e) {
-    //         console.log(e.message);
-    //         res.status(424).json({error: "Unknown error"});
-    //     }
-    //
-    //     // #swagger.tags = ['product']
-    // }
 }
 
 
