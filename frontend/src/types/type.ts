@@ -1,5 +1,5 @@
 export interface TypeState {
-    types: any[];
+    types: any;
     loading: boolean;
     error: null | string;
 }

@@ -3,7 +3,7 @@ import {TagState, TagAction, TTagsAction} from "../../types/tag";
 const initialState: TagState = {
     tags: {},
     error: null,
-    loading: false,
+    loading: true,
 };
 
 export const tagReducer = (state = initialState, action: TagAction): TagState => {

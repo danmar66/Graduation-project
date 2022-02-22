@@ -27,8 +27,6 @@ const TypeList: React.FC = () => {
         setFilterTags(newSelected)
     })
 
-    console.log(tags)
-
     if (loading) {
         return <h1>Loading...</h1>;
     }
@@ -38,7 +36,7 @@ const TypeList: React.FC = () => {
     return (
         <div>
             <Accordion alwaysOpen={true}>
-                {types.map((type) => (
+                {types.docs.map((type: any) => (
                     <Accordion.Item eventKey={type._id} key={type._id}>
                         <Accordion.Header>
                             {type.title.charAt(0).toUpperCase() + type.title.slice(1)}

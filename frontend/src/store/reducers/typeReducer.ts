@@ -1,9 +1,9 @@
 import {TypeState, TypeAction, TTypesAction} from "../../types/type";
 
 const initialState: TypeState = {
-    types: [],
+    types: {},
     error: null,
-    loading: false,
+    loading: true,
 };
 
 export const typeReducer = (state = initialState, action: TypeAction): TypeState => {
