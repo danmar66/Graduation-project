@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import {Button, Spinner, Table} from 'react-bootstrap'
-import {useActions} from "../../hooks/useActions";
-import {fetchTags} from "../../store/action-creators/tag";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {Spinner} from 'react-bootstrap'
+import {useActions} from "../../../hooks/useActions";
+import {fetchTags} from "../../../store/action-creators/tag";
+import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import TableTemplate from "./TableTemplate";
 
 const TagsTable = () => {
