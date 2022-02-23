@@ -14,10 +14,10 @@ export const basketReducer = (state = initialState, action: BasketAction) => {
                     action.payload
                 ]
             }
-        case BasketActionTypes.DELETE_FROM_BASKET:
-            return {}
-        case BasketActionTypes.ADJUST_QTY:
-            return {}
+        // case BasketActionTypes.DELETE_FROM_BASKET:
+        //     return {}
+        // case BasketActionTypes.ADJUST_QTY:
+        //     return {}
         default:
             return state
     }

@@ -2,17 +2,26 @@ import React, {useState} from "react";
 import {Button, Card, Container, FormControl, InputGroup, Navbar, Offcanvas} from "react-bootstrap";
 import {NavLink, useNavigate} from "react-router-dom";
 import {CATALOG_ROUTE} from "../utils/consts";
+import {useSelector} from "react-redux";
+import {useTypedSelector} from "../hooks/useTypedSelector";
+import {RootState} from "../store/reducers";
 
 // @todo Обернуть в функцию useEffect
 
+type BasketItem = {
+    title: string,
+    price: string
+}
+
 function NavBar() {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const {basketItems} = useTypedSelector(state => state.basket)
+
     let isAuth = false;
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     // @todo получение user context для определения авторизован ли пользователь
     return (
         <>
@@ -68,13 +77,17 @@ function NavBar() {
                     <Offcanvas.Title>Your goods</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body className="d-flex flex-column  align-items-center justify-content-start">
-                    <Card
-                        style={{width: "100%", minHeight: "2rem"}}
-                        className='d-flex justify-content-center'
-                    >
-                        <h1>Product</h1>
-                    </Card>
-
+                    {basketItems?.map((el: BasketItem) => {
+                        return (
+                            <Card
+                                style={{width: "100%", minHeight: "2rem"}}
+                                className='d-flex justify-content-center'
+                            >
+                                <p>{el.title}</p>
+                                <p>{el.price}</p>
+                            </Card>
+                        )
+                    })}
                     <Button variant="outline-success" className='mt-3'>
                         Proceed to checkout
                     </Button>
