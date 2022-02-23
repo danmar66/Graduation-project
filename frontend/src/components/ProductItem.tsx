@@ -1,15 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button, Card, Col} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {PRODUCT_ROUTE} from "../utils/consts";
 import {addToBasket} from "../store/action-creators/basket";
 import {useDispatch} from "react-redux";
 
-
-function ProductItem({product}: any) {
+function ProductItem({product, addProductToBasket}: any) {
     // @todo убрать any
     const navigate = useNavigate();
-    // const dispath = useDispatch();
+    const dispath = useDispatch();
+
+    // let items = JSON.parse(localStorage.getItem("product"));
+    // let newProduct = JSON.parse(localStorage.getItem('product')) || [];
+
+    // const addProductToBasket = (product: any) => {
+    //     dispath(addToBasket(product))
+
+    //     newProduct.push(product)
+    //     console.log(newProduct);
+
+    //     localStorage.setItem('product', JSON.stringify(newProduct))
+    // }
+
     return (
         <Col md={6} sm={12} lg={4} className="mb-3">
             <Card border={"black"} style={{width: "100%"}}>
@@ -47,9 +59,9 @@ function ProductItem({product}: any) {
                             className="mt-2"
                             variant="outline-success"
                             style={{width: "100vh"}}
-                            // onClick={() => {
-                            //     dispath(addToBasket(product.title))
-                            // }}
+                            onClick={() => {
+                                addProductToBasket(product)
+                            }}
                         >
                             Buy
                         </Button>

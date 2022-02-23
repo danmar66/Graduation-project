@@ -1,5 +1,5 @@
 export interface ProductState {
-    products: any[];
+    products: any;
     loading: boolean;
     error: null | string;
     page: number;
