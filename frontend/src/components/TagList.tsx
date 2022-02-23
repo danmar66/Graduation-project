@@ -11,8 +11,7 @@ type Props = {
 const TagList: React.FC<Props> = ({tagsList, typeId, handleFilters, filterTags}) => {
     return (
         <div>
-            {tagsList
-                .sort((a: any, b: any) => {
+            {tagsList?.sort((a: any, b: any) => {
                     return a.title > b.title ? 1 : -1;
                 })
                 .map((tag: any) =>
