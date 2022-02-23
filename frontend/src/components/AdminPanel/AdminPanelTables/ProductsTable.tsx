@@ -3,6 +3,8 @@ import {Spinner} from 'react-bootstrap'
 import {useActions} from "../../../hooks/useActions";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import TableTemplate from "./TableTemplate";
+import {useNavigate} from "react-router-dom";
+import {ADMIN_ROUTE} from "../../../utils/consts";
 
 const ProductsTable = () => {
     const {products, loading, error} = useTypedSelector(state => state.product)
@@ -13,7 +15,10 @@ const ProductsTable = () => {
         fetchProducts(1, 20);
     }, []);
 
+    const navigate = useNavigate();
+
     const handleEdit = (id: string) => {
+        navigate(ADMIN_ROUTE + `/products/edit/${id}`)
         console.log('handle edit id ', id)
     }
     const handleDelete = (id: string) => {

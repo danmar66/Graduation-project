@@ -1,9 +1,11 @@
-import React, {useEffect, useMemo, useState} from "react";
-import {useActions} from "../hooks/useActions";
-import {useTypedSelector} from "../hooks/useTypedSelector";
+import React from "react";
+import {Container} from "react-bootstrap";
 
 function Basket() {
-    return <>Basket</>;
+    return (
+        <Container>
+            Basket
+        </Container>)
 }
 
 export default Basket;

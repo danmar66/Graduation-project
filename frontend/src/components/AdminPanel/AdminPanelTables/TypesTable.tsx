@@ -3,6 +3,8 @@ import {Spinner} from 'react-bootstrap'
 import {useActions} from "../../../hooks/useActions";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
 import TableTemplate from "./TableTemplate";
+import {useNavigate} from "react-router-dom";
+import {ADMIN_ROUTE} from "../../../utils/consts";
 
 const TypesTable = () => {
     const {types, loading, error} = useTypedSelector(state => state.type)
@@ -13,11 +15,15 @@ const TypesTable = () => {
         fetchTypes();
     }, []);
 
+    const navigate = useNavigate();
+
     const handleEdit = (id: string) => {
+        navigate(ADMIN_ROUTE + `/types/edit/${id}`)
         console.log('handle edit id ', id)
     }
     const handleDelete = (id: string) => {
         console.log('handle delete id ', id)
+
     }
 
     if (loading) {
