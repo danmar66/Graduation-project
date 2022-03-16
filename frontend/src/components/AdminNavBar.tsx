@@ -69,7 +69,7 @@ const AdminNavBar = () => {
                     </Offcanvas.Body>
                 </Offcanvas>
                 <Row style={{width: "100%"}}>
-                    <Col className='d-flex justify-content-between'>
+                    <Col md={12} className='d-flex justify-content-between'>
                         <div>
                             <Button
                                 style={{width: "150px"}}

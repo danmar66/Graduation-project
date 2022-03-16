@@ -73,10 +73,10 @@ class TagController {
     }
 
     async getAll(req, res) {
-        // const tags = await Tag.find(); // @todo add paginator
+        console.log(req.query.page)
         const options = {
-            limit: 20,
-            page: 1,
+            limit: 2,
+            page: req.query.page || 1,
             collation: {
                 locale: 'en',
             },
