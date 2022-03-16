@@ -12,7 +12,7 @@ const TypesTable = () => {
     const {fetchTypes} = useActions()
 
     useEffect(() => {
-        fetchTypes();
+        fetchTypes(1);
     }, []);
 
     const navigate = useNavigate();
@@ -28,6 +28,7 @@ const TypesTable = () => {
 
     const handlePage = (page: number) => {
         console.log('handle page ' , page)
+        fetchTypes(page)
     }
 
     if (loading) {
