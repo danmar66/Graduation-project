@@ -26,6 +26,10 @@ const TypesTable = () => {
 
     }
 
+    const handlePage = (page: number) => {
+        console.log('handle page ' , page)
+    }
+
     if (loading) {
         return <Spinner animation="border"/>;
     }
@@ -34,7 +38,14 @@ const TypesTable = () => {
     }
 
     return (
-        <TableTemplate data={types} handleEdit={handleEdit} handleDelete={handleDelete}/>
+        <TableTemplate
+            data={types}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            handlePage={handlePage}
+            totalPages={types.totalPages}
+            activePage={types.page}
+        />
     );
 };
 

@@ -24,6 +24,10 @@ const AdminsTable = () => {
         console.log('handle delete id ', id)
     }
 
+    const handlePage = (page: number) => {
+        console.log('handle page ' , page)
+    }
+
     if (loading) {
         return <Spinner animation="border"/>;
     }
@@ -32,7 +36,14 @@ const AdminsTable = () => {
     }
 
     return (
-        <TableTemplate data={tags} handleEdit={handleEdit} handleDelete={handleDelete}/>
+        <TableTemplate
+            data={tags}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            handlePage={handlePage}
+            totalPages={tags.totalPages}
+            activePage={tags.page}
+        />
     );
 };
 

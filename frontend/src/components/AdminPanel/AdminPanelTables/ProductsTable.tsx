@@ -25,6 +25,10 @@ const ProductsTable = () => {
         console.log('handle delete id ', id)
     }
 
+    const handlePage = (page: number) => {
+        console.log('handle page ' , page)
+    }
+
     if (loading) {
         return <Spinner animation="border"/>;
     }
@@ -35,7 +39,14 @@ const ProductsTable = () => {
     console.log(products)
 
     return (
-        <TableTemplate data={products} handleEdit={handleEdit} handleDelete={handleDelete}/>
+        <TableTemplate
+            data={products}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            handlePage={handlePage}
+            totalPages={products.totalPages}
+            activePage={products.page}
+        />
     );
 };
 
