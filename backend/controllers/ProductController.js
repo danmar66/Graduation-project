@@ -90,7 +90,7 @@ class ProductController {
                 ? filter = helpers.handleFilterQuery(url)
                 : filter = {}
             const options = {
-                limit: filter.limit || 20,
+                limit: filter.limit || 2,
                 page: filter.page || 1,
                 collation: {
                     locale: 'en',

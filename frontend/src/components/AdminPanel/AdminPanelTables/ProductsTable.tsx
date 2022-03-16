@@ -12,7 +12,7 @@ const ProductsTable = () => {
     const {fetchProducts} = useActions()
 
     useEffect(() => {
-        fetchProducts(1, 20);
+        fetchProducts(1, 2);
     }, []);
 
     const navigate = useNavigate();
@@ -27,6 +27,7 @@ const ProductsTable = () => {
 
     const handlePage = (page: number) => {
         console.log('handle page ' , page)
+        fetchProducts(page, 2) // @todo improve it!
     }
 
     if (loading) {

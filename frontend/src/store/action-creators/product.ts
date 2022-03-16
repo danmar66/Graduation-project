@@ -7,7 +7,10 @@ export const fetchProducts = (page: number, limit: number) => {
     return async (dispatch: Dispatch<ProductAction>) => {
         try {
             dispatch({type: ProductActionTypes.FETCH_PRODUCTS});
-            const response = await axios.get(`http://localhost:5000/api/product/limit=${limit};page=${page}`);
+            const response = await axios.get(
+                `http://localhost:5000/api/product/limit=${limit};page=${page}`,
+                {params: {page: page}}
+            );
             dispatch({type: ProductActionTypes.FETCH_PRODUCTS_SUCCESS, payload: response.data});
         } catch (error) {
             dispatch({
