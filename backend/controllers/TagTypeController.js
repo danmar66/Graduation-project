@@ -35,8 +35,10 @@ class TagTypeController {
                 return res.status(400).json({message: "Validation error", errorMessage});
             }
 
-            const {id: _id} = rerq.body;
+            const {id: _id} = req.params;
+            console.log(_id)
             const {title, slug} = req.body;
+            console.log(title, slug)
             const isUnique = await TagType.find({$and: [{_id: {$ne: _id}}, {title, slug}]});
             if (isUnique.length) {
                 return response.status(400).json({message: `Type ${title} already created`});
