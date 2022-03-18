@@ -16,3 +16,10 @@ export const fetchTypes = (page?: number) => {
         }
     };
 };
+
+export const deleteType = (id: string) => {
+    return (dispatch: Dispatch<TypeAction>) => {
+        dispatch({type: TTypesAction.DELETE_TYPE, payload: id})
+    };
+};
+
