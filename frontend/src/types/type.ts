@@ -8,6 +8,7 @@ export enum TTypesAction {
     FETCH_TYPES = "FETCH_TYPES",
     FETCH_TYPES_SUCCESS = "FETCH_TYPES_SUCCESS",
     FETCH_TYPES_ERROR = "FETCH_TYPES_ERROR",
+    DELETE_TYPE = "DELETE_TYPE",
     SET_TYPE_PAGE = "SET_TYPE_PAGE", // для изменения текущей страницы
 }
 
@@ -25,6 +26,11 @@ interface FetchTypeErrorAction {
     payload: string;
 }
 
-export type TypeAction = FetchTypeAction | FetchTypeSuccessAction | FetchTypeErrorAction;
+interface DeleteTypeAction {
+    type: TTypesAction.DELETE_TYPE;
+    payload: string;
+}
+
+export type TypeAction = FetchTypeAction | FetchTypeSuccessAction | FetchTypeErrorAction | DeleteTypeAction;
 
 // @todo задать интерфейс для payload
