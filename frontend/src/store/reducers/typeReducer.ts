@@ -14,6 +14,8 @@ export const typeReducer = (state = initialState, action: TypeAction): TypeState
             return {...state, loading: false, types: action.payload};
         case TTypesAction.FETCH_TYPES_ERROR:
             return {...state, loading: false, error: action.payload};
+        case TTypesAction.DELETE_TYPE:
+            return {...state, loading: false, types: state.types.docs.filter((el: any) => el._id !== action.payload)}
         default:
             return state;
     }
