@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Form} from "react-bootstrap";
+import {Button, FloatingLabel, Form} from "react-bootstrap";
 import axios from "axios";
 
 const CreateTypePage = () => {
@@ -20,10 +20,16 @@ const CreateTypePage = () => {
             }}
         >
             <Form.Group className='mb-3'>
-                <Form.Label>Title</Form.Label>
-                <Form.Control value={title} type='title' placeholder={'Title'} onChange={(event => {
-                    setTitle(event.target.value)
-                })}/>
+                {/*<Form.Label>Title</Form.Label>*/}
+                <FloatingLabel
+                    controlId='floatingInput'
+                    label='title'
+                >
+                    <Form.Control value={title} type='title' placeholder={'Title'} onChange={(event => {
+                        setTitle(event.target.value)
+                    })}/>
+                </FloatingLabel>
+
             </Form.Group>
             <Form.Group className='mb-3'>
                 <Form.Label>Slug</Form.Label>
