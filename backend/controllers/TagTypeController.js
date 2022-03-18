@@ -17,7 +17,7 @@ class TagTypeController {
             if (typeCandidate) {
                 return res.status(400).json({message: `Tag type ${title} already exist`});
             }
-            const type = await TagType.create({title, slug: title});
+            const type = await TagType.create({title, slug});
             return res.status(200).json({message: `Type added`, type});
         } catch (e) {
             console.log(e.message);

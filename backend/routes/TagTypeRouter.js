@@ -7,10 +7,10 @@ const validatingMongoIdMiddleware = require('../middlewares/validatingMongoIdMid
 const tagTypeRouter = new express.Router();
 
 tagTypeRouter.post("/tag_type/create",
-    authMiddleware,
+    // authMiddleware,
     [
-        check('title', 'Title must be filled').isEmpty(),
-        check('slug', 'Slug be filled').isEmpty(),
+        check('title', 'Title must be filled').notEmpty(),
+        check('slug', 'Slug be filled').notEmpty(),
     ],
     TagTypeController.create);
 
