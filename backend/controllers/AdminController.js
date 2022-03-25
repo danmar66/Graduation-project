@@ -129,18 +129,17 @@ class AdminController {
             const admin = await Admin.findOne({username});
 
             if (!admin) {
-                return res.status(400).json({message: `Admin ${username} not found`});
+                return res.status(400).json({message: `Admin '${username}' not found`});
             }
             const passwordCheck = helper.passwordCheck(password, admin.password);
 
             if (!passwordCheck) {
-                return res.status(400).json({message: `Error. Type the correct password`});
+                return res.status(400).json({message: `Type the correct password`});
             }
             const token = "Bearer " + helper.generateAccessToken(admin._id);
 
             res.json({message: "Login successful", token});
         } catch (e) {
-            console.log(e.message);
             res.status(400).json({message: "Login error"});
         }
 
