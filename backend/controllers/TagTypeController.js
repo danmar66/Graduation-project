@@ -94,6 +94,18 @@ class TagTypeController {
         // #swagger.tags = ['type']
     }
 
+    async getAllWithoutPagination(req, res) {
+        try {
+            const types = await TagType.find();
+            return res.json(types);
+        } catch (e) {
+            console.log(e.message);
+            res.status(424).json({error: "Unknown error"});
+        }
+
+        // #swagger.tags = ['type']
+    }
+
     async getOne(req, res) {
         try {
             const {id} = req.params;
