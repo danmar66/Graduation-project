@@ -7,7 +7,7 @@ const validatingMongoIdMiddleware = require('../middlewares/validatingMongoIdMid
 const tagTypeRouter = new express.Router();
 
 tagTypeRouter.post("/tag_type/create",
-    // authMiddleware,
+    authMiddleware,
     [
         check('title', 'Title must be filled').notEmpty(),
         check('slug', 'Slug be filled').notEmpty(),
@@ -30,6 +30,9 @@ tagTypeRouter.delete("/tag_type/delete/:id",
 
 tagTypeRouter.get("/tag_type",
     TagTypeController.getAll);
+
+tagTypeRouter.get("/tag_type/all",
+    TagTypeController.getAllWithoutPagination);
 
 tagTypeRouter.get("/tag_type/:id",
     validatingMongoIdMiddleware,
