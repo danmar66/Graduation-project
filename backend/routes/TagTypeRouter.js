@@ -15,7 +15,7 @@ tagTypeRouter.post("/tag_type/create",
     TagTypeController.create);
 
 tagTypeRouter.put("/tag_type/edit/:id",
-    // authMiddleware,
+    authMiddleware,
     validatingMongoIdMiddleware,
     [
         check('title', 'Title must be filled').notEmpty(),
@@ -24,7 +24,7 @@ tagTypeRouter.put("/tag_type/edit/:id",
     TagTypeController.update);
 
 tagTypeRouter.delete("/tag_type/delete/:id",
-    // authMiddleware,
+    authMiddleware,
     validatingMongoIdMiddleware,
     TagTypeController.delete);
 
