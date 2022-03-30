@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, Navigate} from "react-router-dom";
 import {PublicLayout} from "./layouts/PublicLayout";
 import {AdminLayout} from "./layouts/AdminLayout";
 
@@ -29,7 +29,18 @@ import AdminEditPage from "../components/AdminPanel/editPages/AdminEditPage";
 import ProductEditPage from "../components/AdminPanel/editPages/ProductEditPage";
 
 function AppRouter() {
-    const isAuth = true;
+    const isAuth = () => {
+        const token = window.localStorage.getItem('authToken')
+        console.log('token ROUTER ', token)
+        return token
+        // return false
+    };
+
+    const AdminOutlet = () => {
+        const auth = isAuth();
+        console.log('auth ', auth)
+        return auth ? <AdminLayout/> : <Navigate to='/auth'/>
+    }
 
     return (
         <>
@@ -41,7 +52,8 @@ function AppRouter() {
                     <Route path='basket' element={<Basket/>}/>
                 </Route>
 
-                <Route path='/admin' element={<AdminLayout/>}>
+
+                <Route path='/admin' element={<AdminOutlet/>}>
                     <Route index element={<Admin/>}/>
 
                     <Route path='test' element={<Test/>}/>
@@ -62,11 +74,10 @@ function AppRouter() {
                     <Route path='admins/edit/:id' element={<AdminEditPage/>}/>
                     <Route path='products/edit/:id' element={<ProductEditPage/>}/>
                 </Route>
-
                 <Route path='/auth' element={<Auth/>}/>
             </Routes>
         </>
-    );
+    )
 }
 
 export default AppRouter;
