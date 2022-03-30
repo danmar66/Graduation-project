@@ -7,9 +7,12 @@ const AdminNavBar = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        window.localStorage.removeItem('authToken')
+        navigate('/')
+    }
     const styleButton = {width: "18rem", marginBottom: "0.5rem", borderRadius: "0.3rem"}
-
-    const navigate = useNavigate();
 
     return (
         <Navbar bg='dark' variant='dark'>
@@ -83,6 +86,7 @@ const AdminNavBar = () => {
                             <Button
                                 style={{width: "150px"}}
                                 variant="outline-danger"
+                                onClick={handleLogout}
                             >
                                 Log Out
                             </Button>
