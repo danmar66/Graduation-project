@@ -9,9 +9,9 @@ const tagRouter = new express.Router();
 tagRouter.post("/tag/create",
     authMiddleware,
     [
-        check('title', 'Title must be filled').isEmpty(),
-        check('tagTypeId', 'Parent type must be filled').isEmpty(),
-        check('slug', 'Slug be filled').isEmpty(),
+        check('title', 'Title must be filled').notEmpty(),
+        check('tagTypeId', 'Parent type must be filled').notEmpty(),
+        check('slug', 'Slug be filled').notEmpty(),
     ],
     TagController.create);
 
@@ -19,9 +19,9 @@ tagRouter.put("/tag/edit/:id",
     authMiddleware,
     validatingMongoIdMiddleware,
     [
-        check('title', 'Title must be filled').isEmpty(),
-        check('tagTypeId', 'Parent type must be filled').isEmpty(),
-        check('slug', 'Slug be filled').isEmpty(),
+        check('title', 'Title must be filled').notEmpty(),
+        check('tagTypeId', 'Parent type must be filled').notEmpty(),
+        check('slug', 'Slug be filled').notEmpty(),
     ],
     TagController.update);
 
