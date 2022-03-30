@@ -34,7 +34,7 @@ productRouter.delete("/product/delete/:id",
     ProductController.delete);
 
 productRouter.get("/product/",
-    ProductController.getAll);
+    ProductController.getAll); // @todo разобраться с роутом
 
 productRouter.get("/product/:filter",
     ProductController.getAll);
