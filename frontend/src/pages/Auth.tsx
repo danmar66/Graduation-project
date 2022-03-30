@@ -27,16 +27,13 @@ function Auth() {
                             {username, password}
                         )
                             .then(res => {
-                                // console.log(res.data.token)
-                                console.log(res)
-                                // window.localStorage.setItem('authToken', res.data.token)
+                                window.localStorage.setItem('authToken', res.data.token)
                                 setPassword('')
                                 setUsername('')
                                 navigate('/admin')
                             })
                             .catch((error) => {
                                 if (error.response) {
-                                    console.log(error.response.data); // => the response payload
                                     setError(error.response.data)
                                     setPassword('')
                                     setUsername('')

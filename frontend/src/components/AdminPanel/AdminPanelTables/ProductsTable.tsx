@@ -37,8 +37,6 @@ const ProductsTable = () => {
         return <h1>{error}</h1>;
     }
 
-    console.log(products)
-
     return (
         <TableTemplate
             data={products}

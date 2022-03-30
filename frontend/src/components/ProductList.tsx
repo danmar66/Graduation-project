@@ -22,7 +22,6 @@ const ProductList: React.FC = () => {
 
     const sortPosts = (sort: any) => {
         setSelectedSort(sort)
-        // console.log(sort)
     }
 
     let basketItems = JSON.parse(localStorage.getItem('product')!) || '{}';
@@ -36,7 +35,6 @@ const ProductList: React.FC = () => {
                 counter
             }
         ]
-        console.log(basketItems);
 
         localStorage.setItem('product', JSON.stringify(basketItems))
         dispatch(addToBasket(product))

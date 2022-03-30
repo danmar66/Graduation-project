@@ -15,7 +15,6 @@ const TypesTable = () => {
 
     useEffect(() => {
         fetchTypes(1);
-        console.log(types)
     }, []);
 
     const navigate = useNavigate();
@@ -37,7 +36,6 @@ const TypesTable = () => {
     }
 
     const handlePage = (page: number) => {
-        console.log('handle page ', page)
         fetchTypes(page)
     }
 

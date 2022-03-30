@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Dropdown, FloatingLabel, Form, Spinner} from "react-bootstrap";
+import {Button, Dropdown, Form, Spinner} from "react-bootstrap";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useTypedSelector} from "../../../hooks/useTypedSelector";
@@ -36,7 +36,6 @@ const CreateTagPage = () => {
         event.preventDefault();
         axios.post('http://localhost:5000/api/tag/create', {title, tagTypeId: type._id, slug})
             .then(res => {
-                console.log(res)
                 setTitle('')
                 setType({_id: '', title: ''})
                 setSlug('')

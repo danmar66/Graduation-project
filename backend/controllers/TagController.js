@@ -73,7 +73,6 @@ class TagController {
     }
 
     async getAll(req, res) {
-        console.log(req.query.page)
         const options = {
             limit: 2,
             page: req.query.page || 1,

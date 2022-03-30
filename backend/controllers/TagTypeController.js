@@ -36,9 +36,7 @@ class TagTypeController {
             }
 
             const {id: _id} = req.params;
-            console.log(_id)
             const {title, slug} = req.body;
-            console.log(title, slug)
             const isUnique = await TagType.find({$and: [{_id: {$ne: _id}}, {title, slug}]});
             if (isUnique.length) {
                 return response.status(400).json({message: `Type ${title} already created`});
@@ -63,9 +61,6 @@ class TagTypeController {
             });
             const deleteTags = await Tag.deleteMany({tagTypeId: _id});
             const updateProduct = await Product.updateMany({}, {$pullAll: {tags: [...tagsArr]}});
-            console.log("Deleted tags : ", tagsArr);
-            console.log("Product updated : ", updateProduct);
-            console.log("Remove type : ", type.title);
             return res.json({message: `Type deleted`, type});
         } catch (e) {
             console.log(e.message);

@@ -132,7 +132,6 @@ class ProductController {
 
             const {id} = req.params;
             const product = await Product.findById(id);
-            console.log('get one product ', product)
             if (product === null) {
                 res.status(400).json({message: "ID not found"});
             } else {
